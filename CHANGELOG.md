@@ -1,3 +1,9 @@
+## 1.1.2 2015-09-18
+
+BUG FIXES:
+
+  * Added checks to metadata source_url and issues_url for Chef 11 compatibility ([@nickryand][])
+
 ## 1.1.1 2015-05-26
 
 * Updated metadata.rb to show proper source and issues link on supermarket ([@nickryand][])

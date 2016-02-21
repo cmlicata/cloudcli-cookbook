@@ -17,6 +17,11 @@ suites:
     run_list:
       - recipe[awscli::default]
     attributes:
+      awscli:
+        version: 1.9.18
+  - name: test_credentials
+    run_list:
+      - recipe[test_credentials::default]
   - name: test_get
     run_list:
       - recipe[test_get::default]

@@ -16,7 +16,7 @@ require_relative '../spec_helper'
 # Run only on Windows
 if ::RbConfig::CONFIG['host_os'] =~ /mswin|mingw32|windows/
   describe 'awscli::_windows' do
-    cached(:chef_run) do
+    let(:chef_run) do
       ChefSpec::ServerRunner.new(platform: 'windows', version: '2012') do |node|
         node.set['awscli']['windows_url'] = 'http://s3.amazonaws.com/fake/download/awscli.exe'
       end.converge(described_recipe)

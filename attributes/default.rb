@@ -16,6 +16,7 @@
 # language governing permissions and limitations under the License.
 #
 default['awscli']['virtualenv'] = nil
+default['awscli']['version'] = nil
 default['awscli']['windows_url'] = 'https://s3.amazonaws.com/aws-cli/AWSCLI64.msi'
 default['awscli']['binary'] = case node['platform_family']
                               when 'windows'
@@ -23,3 +24,5 @@ default['awscli']['binary'] = case node['platform_family']
                               else
                                 'aws'
                               end
+default['awscli']['python']['version'] = '2.7'
+default['awscli']['python']['provider'] = :system

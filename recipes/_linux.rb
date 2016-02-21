@@ -15,9 +15,21 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 #
-include_recipe 'python::pip'
+package 'groff'
 
-python_pip 'awscli' do
-  virtualenv node['awscli']['virtualenv'] if node['awscli']['virtualenv']
-  action :install
+python_runtime node['awscli']['python']['version'] do
+  provider node['awscli']['python']['provider']
+end
+
+unless node['awscli']['virtualenv'].nil?
+  python_virtualenv node['awscli']['virtualenv']
+
+  python_package 'awscli' do
+    version node['awscli']['version'] if node['awscli']['version']
+    virtualenv node['awscli']['virtualenv']
+  end
+else
+  python_package 'awscli' do
+    version node['awscli']['version'] if node['awscli']['version']
+  end
 end

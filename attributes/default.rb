@@ -24,5 +24,5 @@ default['awscli']['binary'] = case node['platform_family']
                               else
                                 'aws'
                               end
-default['awscli']['python']['version'] = '2.7'
+default['awscli']['python']['version'] = '2'
 default['awscli']['python']['provider'] = :system

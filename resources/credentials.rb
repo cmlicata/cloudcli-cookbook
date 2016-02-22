@@ -59,9 +59,8 @@ end
 def add_config_to_state(path, profile, params)
   # Multiple calls for the same path and profile will overwrite
   # the previous settings
-  if node.run_state.has_key?(path)
-    node.run_state[path][profile] = params
-  else
-    node.run_state[path] = {profile: params}
+  if not node.run_state.has_key?(path)
+    node.run_state[path] = {}
   end
+  node.run_state[path][profile] = params
 end

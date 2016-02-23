@@ -13,18 +13,40 @@
 #
 require_relative '../../../kitchen/data/spec_helper'
 
+default = <<EOF
+[default]
+aws_access_key_id=ASDASDASKD123
+aws_secret_access_key=TESTPASS12345
+region=us-west-2
+
+[secondary]
+region=eu-west-2
+role_arn=arn:aws:iam::123456789012:role/testingchef
+EOF
+
 describe file('/etc/aws/credentials') do
   it { should be_owned_by 'root' }
   it { should be_grouped_into 'root' }
   it { should be_mode 660 }
-  its(:content) { should match /\[default\]/ }
-  its(:content) { should match /aws_access_key_id=ASDASDASKD123/ }
-  its(:content) { should match /aws_access_key_id=ASDASDASKD123/ }
-  its(:content) { should match /\[secondary\]/ }
-  its(:content) { should match /region=eu-west-2/ }
-  its(:content) { should match %r{role_arn=arn:aws:iam::123456789012:role/testingchef} }
+
+  its(:content) { should include(default) }
 end
 
-describe file('/home/testuser/.aws/credentials') do
+s3 = <<EOF
+[default]
+aws_access_key_id=TEST123
+aws_secret_access_key=SECRETKEY!
+s3=
+  max_concurrent_requests=20
+  max_queue_size=10000
+  multipart_threshold=64MB
+  multipart_chunksize=16MB
+EOF
 
+describe file('/home/testuser/.aws/credentials') do
+  it { should be_owned_by 'testuser' }
+  it { should be_grouped_into 'testuser' }
+  it { should be_mode 600 }
+
+  its(:content) { should include(s3) }
 end

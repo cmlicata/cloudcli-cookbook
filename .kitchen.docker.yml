@@ -16,11 +16,3 @@ platforms:
     driver_config:
       image: ubuntu:14.04
       use_cache: true
-
-suites:
-  - name: default
-    run_list:
-      - recipe[awscli::default]
-    attributes:
-      awscli:
-        version: 1.9.18

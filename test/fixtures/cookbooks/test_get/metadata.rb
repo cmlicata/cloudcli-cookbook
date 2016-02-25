@@ -1,2 +1,2 @@
 name 'test_get'
-depends 'awscli'
+depends 'cloudcli'

@@ -1,3 +1,4 @@
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
@@ -11,14 +12,6 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 #
-include_recipe 'python::virtualenv'
+node.set['cloudcli']['aws']['virtualenv'] = '/tmp/testenv'
 
-python_virtualenv '/tmp/testenv' do
-  owner 'root'
-  group 'root'
-  action :create
-end
-
-node.set['awscli']['virtualenv'] = '/tmp/testenv'
-
-include_recipe 'awscli::default'
+include_recipe 'cloudcli::awscli'

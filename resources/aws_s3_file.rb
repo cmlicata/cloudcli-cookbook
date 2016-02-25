@@ -1,7 +1,8 @@
 #
-# Cookbook Name:: awscli
-# Resources:: s3_file
+# Cookbook Name:: cloudcli
+# Resources:: aws_s3_file
 #
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You

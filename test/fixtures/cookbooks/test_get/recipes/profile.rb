@@ -1,3 +1,4 @@
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
@@ -11,11 +12,11 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 #
-include_recipe 'awscli::default'
+include_recipe 'cloudcli::awscli'
 
-# Awscli should pull credentials from the metadata profile if no creds
+# Cloudcli should pull credentials from the metadata profile if no creds
 # are set.
-awscli_s3_file "/tmp/testfile" do
+cloudcli_aws_s3_file "/tmp/testfile" do
   bucket node['test_get']['bucket']
   key node['test_get']['key']
   checksum node['test_get']['checksum']

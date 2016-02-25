@@ -1,3 +1,3 @@
 name 'test_virtualenv'
-depends 'python'
-depends 'awscli'
+depends 'poise-python'
+depends 'cloudcli'

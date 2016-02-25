@@ -1,19 +1,15 @@
-awscli Cookbook
+cloudcli Cookbook
 =============
-Installs the AWS Command Line Interface tools and provides a set of LWRPs for use within chef cookbooks.
+Installs cloud provider CLI tools and provide custom resources which expose the cloud tools to cookbooks.
 
-Benefits
---------
-The benefits of using the awscli are as follows:
-* awscli is maintained by Amazon and is updated as new APIs and Services are released
-* support for IAM profiles works out of the box
-* automatically take advantage of features like multi-threaded _download_ that are built into the CLI tools
-* no native compilation of dependencies is necessary
+CLI Tools Supported
+-------------------
+* aws-cli
 
 Requirements
 ------------
 
-* Chef 11.6 or higher
+* Chef 12.5 or higher
 
 Supported Platforms
 -------------------
@@ -23,27 +19,12 @@ Supported Platforms
 
 Attributes
 ----------
-All attributes are located under `node['awscli']`
-<table>
-  <tr>
-    <th>Attribute</th>
-    <th>Description</th>
-    <th>Example</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td>version</td>
-    <td>The version of awscli to install</td>
-    <td>1.4.0</td>
-    <td>1.4.4</td>
-  </tr>
-  <tr>
-    <td>virtualenv</td>
-    <td>Python virtualenv you would like to install awscli into</td>
-    <td>/home/ubuntu/my_ve</td>
-    <td>nil</td>
-  </tr>
-</table>
+All attributes are located under `node['cloudcli']`
+
+| Attribute  | Description                                             | Example            | Default     |
+|------------|---------------------------------------------------------|--------------------|-------------|
+| version    | The version of awscli to install                        | 1.4.0              | nil (latest)|
+| virtualenv | Python virtualenv you would like to install awscli into | /home/ubuntu/my_ve | nil         |
 
 Recipes
 -------
@@ -54,87 +35,33 @@ Installs the awscli tools.
 Resources/Providers
 -------------------
 
-### awscli_s3_file
+### cloudcli_aws_s3_file
 #### Actions
-<table>
-  <tr>
-    <th>Action</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>:get</td>
-    <td>Download a file from an s3 bucket</td>
-  </tr>
-</table>
+
+| Action | Description                       |
+|--------|-----------------------------------|
+| :get   | Download a file from an s3 bucket |
 
 #### Attribute Parameters
-<table>
-  <tr>
-    <th>Parameter</th>
-    <th>Description</th>
-    <th>Default</th>
-  </tr>
-  <tr>
-    <td>aws_access_key_id</td>
-    <td>AWS API Access Key ID</td>
-    <td>nil</td>
-  </tr>
-  <tr>
-    <td>aws_secret_access_key</td>
-    <td>AWS API Secret Access Key</td>
-    <td>nil</td>
-  </tr>
-  <tr>
-    <td>path</td>
-    <td>Location to store downloaded file</td>
-    <td>name attribute</td>
-  <tr>
-  <tr>
-    <td>bucket</td>
-    <td>S3 bucket name</td>
-    <td></td>
-  <tr>
-  <tr>
-    <td>key</td>
-    <td>S3 Key name to download</td>
-    <td></td>
-  <tr>
-  <tr>
-    <td>checksum</td>
-    <td>Sha256 checksum to validate download</td>
-    <td>nil</td>
-  <tr>
-  <tr>
-    <td>region</td>
-    <td>AWS endpoint region</td>
-    <td>us-east-1</td>
-  <tr>
-  <tr>
-    <td>timeout</td>
-    <td>Number of seconds to wait for download to complete</td>
-    <td>900</td>
-  <tr>
-  <tr>
-    <td>owner</td>
-    <td>The owner of the downloaded file</td>
-    <td>root</td>
-  </tr>
-  <tr>
-    <td>group</td>
-    <td>The group name the file should be grouped into</td>
-    <td>root</td>
-  </tr>
-  <tr>
-    <td>mode</td>
-    <td>The mode to set on the file. Setting to nil, leaves this to the operating system defaults</td>
-    <td>nil</td>
-  </tr>
-</table>
+
+| Parameter             | Description                                                                               | Default        |
+|-----------------------|-------------------------------------------------------------------------------------------|----------------|
+| aws_access_key_id     | AWS API Access Key ID                                                                     | nil            |
+| aws_secret_access_key | AWS API Secret Access Key                                                                 | nil            |
+| path                  | Location to store downloaded file                                                         | name attribute |
+| bucket                | S3 bucket name                                                                            |                |
+| key                   | S3 Key name to download                                                                   |                |
+| checksum              | Sha256 checksum to validate download                                                      | nil            |
+| region                | AWS endpoint region                                                                       | us-east-1      |
+| timeout               | Number of seconds to wait for download to complete                                        | 900            |
+| owner                 | The owner of the downloaded file                                                          | root           |
+| group                 | The group name the file should be grouped into                                            | root           |
+| mode                  | The mode to set on the file. Setting to nil, leaves this to the operating system defaults | nil            |
 
 #### Usage Examples
 ```ruby
 # Provide all credential information to download file and store it to /tmp/testfile
-awscli_s3_file '/tmp/testfile' do
+cloudcli_aws_s3_file '/tmp/testfile' do
   aws_access_key_id 'YOUR_ACCESS_KEY_ID'
   aws_secret_access_key 'YOUR_SECRET_ACCESS_KEY'
   region 'us-west-2'
@@ -150,7 +77,7 @@ end
 
 ```ruby
 # Do not pass any credentials to provider because our instance is on EC2 and uses an IAM Profile
-awscli_s3_file '/tmp/testfile' do
+cloudcli_aws_s3_file '/tmp/testfile' do
   bucket 'my-test-bucket'
   key 'my_large_file.gz'
 end
@@ -195,14 +122,14 @@ export AWS_IAM_PROFILE=
 
 ### AWS Configuration
 
-#### test_get suite dependencies
+#### `test_get` suite dependencies
 The following items need to be setup properly in order to use the `test_get` suite.
 
 * AWS S3 Bucket containing a test file
 * AWS IAM Account with at least GetObject access to the bucket setup in the previous step
 * AWS IAM Account API keys for the account setup in the previous step
 
-#### profile_test_get suite dependencies
+#### `profile_test_get` suite dependencies
 The following items need to be setup properly in order to use the `profile_test_get` suite.
 
 * AWS S3 Bucket containing a test file
@@ -234,30 +161,34 @@ Contributing
 1. Fork the repository on Github: <https://help.github.com/articles/fork-a-repo>
 2. Clone the repository locally:
 
-    $ git clone http://github.com/awslabs/awscli-cookbook
+    ```bash
+    $ git clone http://github.com/nickryand/cloudcli-cookbook
+    ```
 
 3. Create a named feature branch:
 
-    $ cd awscli-cookbook
+    ```bash
+    $ cd cloudcli-cookbook
     $ git checkout -b [new feature branch]
+    ```
 
 4. Add your change(s)
 5. Write tests for your change(s):
-
-    Please add tests for your changes. This helps prevent regressions in the future.
-
 6. Install the gem dependencies:
 
-    bundle install
-
+    ```bash
+    $ bundle install
+    ```
 7. Run the integration and spec tests to ensure they all pass:
 
+    ```bash
     bundle exec rake integration
-
+    ```
 8. Run the style tests to ensure they all pass:
 
+    ```bash
     bundle exec rake style
-
+    ```
 9. Update the README.md with new information if applicable.
 10. Commit and push your changes up to your feature branch
 11. Submit a Pull Request
@@ -267,6 +198,7 @@ License and Authors
 - Author:: Nick Downs (<nickryand@gmail.com>)
 
 ```
+Copyright 2016 Nick Downs
 Copyright 2014 Amazon Web Services
 
 Licensed under the Apache License, Version 2.0 (the "License");

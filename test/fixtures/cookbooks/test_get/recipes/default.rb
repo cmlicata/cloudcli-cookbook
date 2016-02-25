@@ -1,3 +1,4 @@
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
@@ -11,7 +12,7 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 #
-include_recipe 'awscli::default'
+include_recipe 'cloudcli::awscli'
 
 user 'testuser' do
   comment 'Test kitchen user'
@@ -26,7 +27,7 @@ group 'testgroup' do
 end
 
 # Specifying all download options
-awscli_s3_file "/tmp/testfile" do
+cloudcli_aws_s3_file "/tmp/testfile" do
   owner 'testuser'
   group 'testgroup'
   mode '0755'
@@ -39,7 +40,7 @@ awscli_s3_file "/tmp/testfile" do
 end
 
 # Test differing mode
-awscli_s3_file "/tmp/testfile2" do
+cloudcli_aws_s3_file "/tmp/testfile2" do
   mode '1511'
   bucket node['test_get']['bucket']
   key node['test_get']['key']
@@ -48,7 +49,7 @@ awscli_s3_file "/tmp/testfile2" do
 end
 
 # Default download options
-awscli_s3_file "/tmp/testfile3" do
+cloudcli_aws_s3_file "/tmp/testfile3" do
   bucket node['test_get']['bucket']
   key node['test_get']['key']
   aws_access_key_id node['test_get']['aws_access_key_id']

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: awscli
+# Cookbook Name:: cloudcli
 # Recipe:: default
 #
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -15,9 +15,4 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 #
-case node['platform_family']
-when 'windows'
-  include_recipe 'awscli::_windows'
-else
-  include_recipe 'awscli::_linux'
-end
+include_recipe 'cloudcli::awscli'

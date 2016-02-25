@@ -1,2 +1,2 @@
 name 'test_credentials'
-depends 'awscli'
+depends 'cloudcli'

@@ -1,3 +1,4 @@
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
@@ -13,7 +14,7 @@
 #
 require_relative '../spec_helper'
 
-describe 'awscli::default' do
+describe 'cloudcli::awscli' do
   # Run only on Windows
   if ::RbConfig::CONFIG['host_os'] =~ /mswin|mingw32|windows/
     context 'windows' do
@@ -22,7 +23,7 @@ describe 'awscli::default' do
       end
 
       it 'includes the windows recipe' do
-        expect(chef_run).to include_recipe('awscli::_windows')
+        expect(chef_run).to include_recipe('cloudcli::_aws_windows')
       end
     end
   end
@@ -33,7 +34,7 @@ describe 'awscli::default' do
     end
 
     it 'includes the linux recipe' do
-      expect(chef_run).to include_recipe('awscli::_linux')
+      expect(chef_run).to include_recipe('cloudcli::_aws_linux')
     end
   end
 end

@@ -1,7 +1,8 @@
 #
-# Cookbook Name:: awscli
-# provider:: s3_file
+# Cookbook Name:: cloudcli
+# provider:: aws_s3_file
 #
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
@@ -28,7 +29,7 @@ def whyrun_supported?
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::AwscliS3File.new(new_resource.name)
+  @current_resource = Chef::Resource::CloudcliAwsS3File.new(new_resource.name)
   @current_resource.bucket(new_resource.bucket)
   @current_resource.key(new_resource.key)
   @current_resource.path(new_resource.path)
@@ -61,7 +62,7 @@ action :get do
 end
 
 def s3_get
-  cmd = node['awscli']['binary'].dup
+  cmd = node['cloudcli']['binary'].dup
   cmd << ' s3 cp '
   cmd << "s3://#{new_resource.bucket}/#{new_resource.key} "
   cmd << new_resource.path

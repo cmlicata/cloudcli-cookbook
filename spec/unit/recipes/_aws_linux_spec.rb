@@ -1,3 +1,4 @@
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
@@ -13,11 +14,11 @@
 #
 require_relative '../spec_helper'
 
-describe 'awscli::_linux' do
+describe 'cloudcli::_aws_linux' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new(platform: 'ubuntu', version: '14.04') do |node|
-      node.set['awscli']['python']['version'] = '2.7.2'
-      node.set['awscli']['python']['provider'] = :system
+      node.set['cloudcli']['aws']['python']['version'] = '2.7.2'
+      node.set['cloudcli']['aws']['python']['provider'] = :system
     end.converge(described_recipe)
   end
 
@@ -31,17 +32,17 @@ describe 'awscli::_linux' do
     expect(chef_run).to install_package('groff')
   end
 
-  it 'installs awscli via pip' do
+  it 'installs cloudcli via pip' do
     expect(chef_run).to install_python_package('awscli')
   end
 
   it 'creates the virtualenv and installs the pacakge in the virtualenv' do
-    chef_run.node.set['awscli']['virtualenv'] = '/opt/fake/pip'
-    chef_run.node.set['awscli']['version'] = '1.9.0'
+    chef_run.node.set['cloudcli']['aws']['virtualenv'] = '/opt/fake/pip'
+    chef_run.node.set['cloudcli']['aws']['version'] = '1.9.0'
     chef_run.converge(described_recipe)
     expect(chef_run).to create_python_virtualenv('/opt/fake/pip')
     expect(chef_run).to install_python_package('awscli').with(
                           version: '1.9.0'
-                        )                       
+                        )
   end
 end

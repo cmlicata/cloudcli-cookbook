@@ -1,6 +1,6 @@
 #
-# Cookbook Name:: awscli
-# Recipe:: _linux
+# Cookbook Name:: cloudcli
+# Recipe:: awscli
 #
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
@@ -15,21 +15,9 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 #
-package 'groff'
-
-python_runtime node['awscli']['python']['version'] do
-  provider node['awscli']['python']['provider']
-end
-
-unless node['awscli']['virtualenv'].nil?
-  python_virtualenv node['awscli']['virtualenv']
-
-  python_package 'awscli' do
-    version node['awscli']['version'] if node['awscli']['version']
-    virtualenv node['awscli']['virtualenv']
-  end
+case node['platform_family']
+when 'windows'
+  include_recipe 'cloudcli::_aws_windows'
 else
-  python_package 'awscli' do
-    version node['awscli']['version'] if node['awscli']['version']
-  end
+  include_recipe 'cloudcli::_aws_linux'
 end

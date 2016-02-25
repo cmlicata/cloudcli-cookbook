@@ -1,4 +1,4 @@
-# Copyright 2015 Nick Downs
+# Copyright 2016 Nick Downs
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
 # may not use this file except in compliance with the License. A copy of
@@ -17,7 +17,7 @@ directory '/etc/aws' do
   recursive true
 end
 
-awscli_credentials '/etc/aws/credentials' do
+cloudcli_aws_credentials '/etc/aws/credentials' do
   user 'testuser'
   group 'testuser'
   mode 0600
@@ -31,7 +31,7 @@ end
 
 # The second call overwrites the user/group/mode from the first resource
 # call
-awscli_credentials '/etc/aws/credentials' do
+cloudcli_aws_credentials '/etc/aws/credentials' do
   user 'root'
   group 'root'
   mode 0660
@@ -56,7 +56,7 @@ s3_config = <<EOF
   multipart_chunksize=16MB
 EOF
 
-awscli_credentials '/home/testuser/.aws/credentials' do
+cloudcli_aws_credentials '/home/testuser/.aws/credentials' do
   user 'testuser'
   group 'testuser'
   mode 0600

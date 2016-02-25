@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: awscli
+# Cookbook Name:: cloudcli
 # Attributes:: default
 #
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
@@ -15,14 +15,14 @@
 # ANY KIND, either express or implied. See the License for the specific
 # language governing permissions and limitations under the License.
 #
-default['awscli']['virtualenv'] = nil
-default['awscli']['version'] = nil
-default['awscli']['windows_url'] = 'https://s3.amazonaws.com/aws-cli/AWSCLI64.msi'
-default['awscli']['binary'] = case node['platform_family']
+default['cloudcli']['aws']['virtualenv'] = nil
+default['cloudcli']['aws']['version'] = nil
+default['cloudcli']['aws']['windows_url'] = 'https://s3.amazonaws.com/aws-cli/AWSCLI64.msi'
+default['cloudcli']['aws']['binary'] = case node['platform_family']
                               when 'windows'
                                 '"C:\Program Files\Amazon\AWSCLI\aws"'
                               else
                                 'aws'
                               end
-default['awscli']['python']['version'] = '2'
-default['awscli']['python']['provider'] = :system
+default['cloudcli']['aws']['python']['version'] = '2'
+default['cloudcli']['aws']['python']['provider'] = :system

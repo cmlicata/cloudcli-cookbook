@@ -1,3 +1,4 @@
+# Copyright 2016 Nick Downs
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
@@ -15,10 +16,10 @@ require_relative '../spec_helper'
 
 # Run only on Windows
 if ::RbConfig::CONFIG['host_os'] =~ /mswin|mingw32|windows/
-  describe 'awscli::_windows' do
+  describe 'cloudcli::_aws_windows' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new(platform: 'windows', version: '2012') do |node|
-        node.set['awscli']['windows_url'] = 'http://s3.amazonaws.com/fake/download/awscli.exe'
+        node.set['cloudcli']['aws']['windows_url'] = 'http://s3.amazonaws.com/fake/download/awscli.exe'
       end.converge(described_recipe)
     end
 
@@ -26,9 +27,9 @@ if ::RbConfig::CONFIG['host_os'] =~ /mswin|mingw32|windows/
       expect(chef_run).to include_recipe('windows')
     end
 
-    it 'installs awscli directly from a download link' do
+    it 'installs cloudcli directly from a download link' do
       expect(chef_run).to install_windows_package('AWS Command Line Interface')
-        .with_source('http://s3.amazonaws.com/fake/download/awscli.exe')
+        .with_source('http://s3.amazonaws.com/fake/download/cloudcli.exe')
     end
   end
 end

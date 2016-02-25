@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: awscli
+# Cookbook Name:: cloudcli
 # Resources:: config
 #
-# Copyright (C) 2015 Nick Downs
+# Copyright (C) 2016 Nick Downs
 #
 # Licensed under the Apache License, Version 2.0 (the "License"). You
 # may not use this file except in compliance with the License. A copy of
@@ -31,7 +31,7 @@ action :set do
     group new_resource.group
     mode new_resource.mode
     source 'credentials.erb'
-    cookbook 'awscli'
+    cookbook 'cloudcli'
     variables(
       :state_key => path,
     )

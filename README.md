@@ -11,11 +11,11 @@ Requirements
 
 * Chef 12.5 or higher
 
-Supported Platforms
--------------------
-* Ubuntu 12.04, 14.04
-* CentOS 6.4, 6.5
-* Amazon 2014.03
+Tested Platforms
+----------------
+* Ubuntu 14.04
+* CentOS 6.5
+* Amazon 2015.09.2
 
 Attributes
 ----------

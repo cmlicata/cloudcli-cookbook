@@ -4,8 +4,10 @@ driver:
   aws_ssh_key_id: <%= ENV['AWS_KEYPAIR_NAME'] %>
   iam_profile_name: <%= ENV['AWS_IAM_PROFILE'] %>
   region: <%= ENV['AWS_REGION'] || 'us-east-1' %>
-  availability_zone: <%= ENV['AWS_AVAILABILITY_ZONE'] || 'us-east-1b' %>
-  instance_type: <%= ENV['AWS_FLAVOR_ID'] || 'm3.medium' %>
+  subnet_id: <%= ENV['AWS_SUBNET_ID'] %>
+  availability_zone: <%= ENV['AWS_AVAILABILITY_ZONE'] %>
+  instance_type: <%= ENV['AWS_FLAVOR_ID'] || 't2.micro' %>
+  associate_public_ip: true
 
 transport:
   ssh_key: <%= ENV['EC2_SSH_KEY_PATH'] %>
@@ -22,8 +24,10 @@ platforms:
       image_id: <%= ENV['AWS_UBUNTU_1404_AMI'] %>
     transport:
       username: ubuntu
-  - name: amzn-linux-2014.09
+    run_list:
+      - recipe[apt]
+  - name: amzn-linux
     driver:
-      image_id: <%= ENV['AWS_AMAZON_201409_AMI'] %>
+      image_id: <%= ENV['AWS_AMAZON_AMI'] %>
     transport:
       username: ec2-user

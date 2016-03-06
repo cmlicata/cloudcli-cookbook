@@ -62,7 +62,7 @@ action :get do
 end
 
 def s3_get
-  cmd = node['cloudcli']['binary'].dup
+  cmd = node['cloudcli']['aws']['binary'].dup
   cmd << ' s3 cp '
   cmd << "s3://#{new_resource.bucket}/#{new_resource.key} "
   cmd << new_resource.path

@@ -18,7 +18,7 @@ directory '/etc/aws' do
 end
 
 cloudcli_aws_credentials '/etc/aws/credentials' do
-  user 'testuser'
+  owner 'testuser'
   group 'testuser'
   mode 0600
   params(
@@ -32,7 +32,7 @@ end
 # The second call overwrites the user/group/mode from the first resource
 # call
 cloudcli_aws_credentials '/etc/aws/credentials' do
-  user 'root'
+  owner 'root'
   group 'root'
   mode 0660
   profile 'secondary'
@@ -43,7 +43,7 @@ cloudcli_aws_credentials '/etc/aws/credentials' do
 end
 
 directory '/home/testuser/.aws/' do
-  user 'testuser'
+  owner 'testuser'
   group 'testuser'
   recursive true
 end
@@ -57,7 +57,7 @@ s3_config = <<EOF
 EOF
 
 cloudcli_aws_credentials '/home/testuser/.aws/credentials' do
-  user 'testuser'
+  owner 'testuser'
   group 'testuser'
   mode 0600
   params(

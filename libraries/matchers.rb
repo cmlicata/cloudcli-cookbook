@@ -16,4 +16,12 @@ if defined?(ChefSpec)
   def get_cloudcli_aws_s3_file(path)
     ChefSpec::Matchers::ResourceMatcher.new(:cloudcli_aws_s3_file, :get, path)
   end
+
+  def create_cloudcli_aws_credentaisl(path)
+    ChefSpec::Matchers::ResourceMatcher.new(:cloudcli_aws_credentials, :create, path)
+  end
+
+  def delete_cloudcli_aws_credentaisl(path)
+    ChefSpec::Matchers::ResourceMatcher.new(:cloudcli_aws_credentials, :delete, path)
+  end
 end

@@ -1,23 +1,10 @@
-## 1.1.2 2015-09-18
+## 1.0.0 2016-03-04
 
-BUG FIXES:
+Initial Release post fork ([@nickryand][])
 
-  * Added checks to metadata source_url and issues_url for Chef 11 compatibility ([@nickryand][])
-
-## 1.1.1 2015-05-26
-
-* Updated metadata.rb to show proper source and issues link on supermarket ([@nickryand][])
-
-## 1.1.0 2015-05-26
-
-* Added owner, group, and mode parameters to the s3_file resource ([@nickryand][])
-
-## 1.0.1 2015-01-10
-
-* Updated Berksfile to point to https://supermarket.chef.io ([@nickryand][])
-
-## 1.0.0 2015-01-06
-
-Initial Release ([@nickryand][])
+* Project forked from the https://github.com/awscli/awscli-cookbook project
+* Added a new custom resource which allows you to generate awscli credentials files: `cloudcli_aws_credentials`
+* The upstream `python` cookbook is depricated so this cookbook now depends on `poise-python`
+* Cookbook now requires Chef > 12.5 due to the new custom resource syntax used to implement `cloudcli_aws_credentails`
 
 [@nickryand]: https://github.com/nickryand

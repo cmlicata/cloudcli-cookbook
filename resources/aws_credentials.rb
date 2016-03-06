@@ -19,15 +19,15 @@
 property :path, kind_of: String, name_property: true
 property :profile, kind_of: String, default: 'default'
 property :params, kind_of: Hash, default: {}
-property :user, kind_of: String
-property :group, kind_of: String
-property :mode, kind_of: [String, Integer]
+property :owner, kind_of: String, default: 'root'
+property :group, kind_of: String, default: 'root'
+property :mode, kind_of: [String, Integer], default: 0600
 
-action :set do
+action :create do
   add_config_to_state(path, profile, params)
 
   template path do
-    user new_resource.user
+    owner new_resource.owner
     group new_resource.group
     mode new_resource.mode
     source 'credentials.erb'
@@ -50,7 +50,7 @@ action :set do
   end
 end
 
-action :remove do
+action :delete do
   template path do
     action :delete
   end

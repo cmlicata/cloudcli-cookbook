@@ -80,7 +80,7 @@ end
 cloudcli_aws_s3_file '/tmp/testfile' do
   bucket 'my-test-bucket'
   key 'my_large_file.gz'
-  end
+end
 ```
 
 ### cloudcli_aws_credentials
@@ -91,7 +91,7 @@ an example of this behavior.
 
 #### Actions
 | Action  | Description                    |
-|---------+--------------------------------|
+|---------|--------------------------------|
 | :create | Create an AWS credentials file |
 | :delete | Remove the credentials file    |
 

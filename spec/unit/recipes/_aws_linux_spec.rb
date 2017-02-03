@@ -24,8 +24,8 @@ describe 'cloudcli::_aws_linux' do
 
   it 'sets the python runtime to version 2.7 and system' do
     expect(chef_run).to install_python_runtime('2.7.2').with(
-                          provider: PoisePython::PythonProviders::System
-                        )
+      provider: PoisePython::PythonProviders::System
+    )
   end
 
   it 'installs the groff package' do
@@ -42,7 +42,7 @@ describe 'cloudcli::_aws_linux' do
     chef_run.converge(described_recipe)
     expect(chef_run).to create_python_virtualenv('/opt/fake/pip')
     expect(chef_run).to install_python_package('awscli').with(
-                          version: '1.9.0'
-                        )
+      version: '1.9.0'
+    )
   end
 end

@@ -22,15 +22,15 @@ python_runtime node['cloudcli']['aws']['python']['version'] do
   provider node['cloudcli']['aws']['python']['provider']
 end
 
-unless node['cloudcli']['aws']['virtualenv'].nil?
+if node['cloudcli']['aws']['virtualenv'].nil?
+  python_package 'awscli' do
+    version node['cloudcli']['aws']['version'] if node['cloudcli']['aws']['version']
+  end
+else
   python_virtualenv node['cloudcli']['aws']['virtualenv']
 
   python_package 'awscli' do
     version node['cloudcli']['aws']['version'] if node['cloudcli']['aws']['version']
     virtualenv node['cloudcli']['aws']['virtualenv']
-  end
-else
-  python_package 'awscli' do
-    version node['cloudcli']['aws']['version'] if node['cloudcli']['aws']['version']
   end
 end

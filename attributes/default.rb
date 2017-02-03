@@ -19,10 +19,10 @@ default['cloudcli']['aws']['virtualenv'] = nil
 default['cloudcli']['aws']['version'] = nil
 default['cloudcli']['aws']['windows_url'] = 'https://s3.amazonaws.com/aws-cli/AWSCLI64.msi'
 default['cloudcli']['aws']['binary'] = case node['platform_family']
-                              when 'windows'
-                                '"C:\Program Files\Amazon\AWSCLI\aws"'
-                              else
-                                'aws'
-                              end
+                                       when 'windows'
+                                         '"C:\Program Files\Amazon\AWSCLI\aws"'
+                                       else
+                                         'aws'
+                                       end
 default['cloudcli']['aws']['python']['version'] = '2'
 default['cloudcli']['aws']['python']['provider'] = :system

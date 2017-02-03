@@ -4,6 +4,9 @@ AllCops:
     - tmp/**/*
     - cookbooks/**/*
     - bin/**/*
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
 
 AlignParameters:
   Enabled: false
@@ -21,3 +24,7 @@ MethodLength:
   Max: 30
 Metrics/AbcSize:
   Max: 32
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/NumericLiteralPrefix:
+  EnforcedOctalStyle: zero_only

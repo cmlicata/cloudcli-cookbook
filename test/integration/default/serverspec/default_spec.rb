@@ -19,5 +19,5 @@ end
 
 describe command('aws --version') do
   its(:exit_status) { should eq 0 }
-  its(:stderr) { should match /aws-cli\/1.9.18/ }
+  its(:stderr) { should match(%r{aws-cli/1.9.18}) }
 end

@@ -24,7 +24,7 @@ ruby_block "dump_node_attributes" do
   block do
     require 'json'
 
-    attrs = Hash.new
+    attrs = {}
 
     attrs.merge!(node.default_attrs) unless node.default_attrs.empty?
     attrs.merge!(node.normal_attrs) unless node.normal_attrs.empty?

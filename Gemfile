@@ -4,15 +4,15 @@ gem 'berkshelf'
 gem 'emeril'
 
 group :style do
-  gem 'rubocop'
   gem 'foodcritic'
+  gem 'rubocop'
 end
 
 group :test do
-  gem 'test-kitchen'
-  gem 'kitchen-vagrant'
-  gem 'kitchen-docker'
   gem 'chefspec'
+  gem 'kitchen-docker'
+  gem 'kitchen-vagrant'
+  gem 'test-kitchen'
 end
 
 group :aws do

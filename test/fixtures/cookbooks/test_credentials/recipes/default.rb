@@ -28,7 +28,6 @@ cloudcli_aws_credentials '/etc/aws/credentials' do
   )
 end
 
-
 # The second call overwrites the user/group/mode from the first resource
 # call
 cloudcli_aws_credentials '/etc/aws/credentials' do

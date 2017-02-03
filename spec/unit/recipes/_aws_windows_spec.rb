@@ -19,7 +19,7 @@ if ::RbConfig::CONFIG['host_os'] =~ /mswin|mingw32|windows/
   describe 'cloudcli::_aws_windows' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new(platform: 'windows', version: '2012') do |node|
-        node.set['cloudcli']['aws']['windows_url'] = 'http://s3.amazonaws.com/fake/download/awscli.exe'
+        node.normal['cloudcli']['aws']['windows_url'] = 'http://s3.amazonaws.com/fake/download/awscli.exe'
       end.converge(described_recipe)
     end
 

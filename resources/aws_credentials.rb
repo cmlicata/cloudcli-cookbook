@@ -33,7 +33,7 @@ action :create do
     source 'credentials.erb'
     cookbook 'cloudcli'
     variables(
-      :state_key => path,
+      :state_key => path
     )
     action :nothing
   end
@@ -56,11 +56,11 @@ action :delete do
   end
 end
 
+default_action :create
+
 def add_config_to_state(path, profile, params)
   # Multiple calls for the same path and profile will overwrite
   # the previous settings
-  if not node.run_state.has_key?(path)
-    node.run_state[path] = {}
-  end
+  node.run_state[path] = {} unless node.run_state.key?(path)
   node.run_state[path][profile] = params
 end

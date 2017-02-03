@@ -56,6 +56,8 @@ action :delete do
   end
 end
 
+default_action :create
+
 def add_config_to_state(path, profile, params)
   # Multiple calls for the same path and profile will overwrite
   # the previous settings

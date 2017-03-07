@@ -286,9 +286,11 @@ Contributing
 
 License and Authors
 -------------------
+- Author:: Christopher Licata (<cmlpolyglotdev@gmail.com>)
 - Author:: Nick Downs (<nickryand@gmail.com>)
 
 ```
+Copyright 2017 Christopher Licata
 Copyright 2016 Nick Downs
 Copyright 2014 Amazon Web Services
 

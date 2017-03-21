@@ -1,5 +1,12 @@
-## 1.0.0 2016-03-04
 
+## 1.1.0 2017-03-21
+Fix poise-python depend ([@biinari][])
+
+ * Fix issue with specifying multiple version constraints in metadata.rb file
+ 
+ [@biinari]: https://github.com/biinari
+
+## 1.0.0 2016-03-04
 Initial Release post fork ([@nickryand][])
 
 * Project forked from the https://github.com/awscli/awscli-cookbook project

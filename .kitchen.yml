@@ -8,7 +8,7 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-  - name: centos-6.5
+  - name: centos-6.7
 
 suites:
   - name: default
@@ -47,4 +47,4 @@ suites:
         bucket: <%= ENV['TEST_BUCKET'] %>
         key: <%= ENV['TEST_KEY'] %>
         checksum: <%= ENV['TEST_CHECKSUM'] %>
-    excludes: ["ubuntu-14.04", "ubuntu-12.04", "centos-6.4", "centos-6.5"]
+    excludes: ["ubuntu-14.04", "ubuntu-12.04", "centos-6.4", "centos-6.7"]

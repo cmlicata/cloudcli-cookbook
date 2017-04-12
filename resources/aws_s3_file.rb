@@ -17,17 +17,20 @@
 # language governing permissions and limitations under the License.
 #
 
-actions :get
-default_action :get
+class CloudcliAwsS3File < ::Chef::Resource
+  default_action :get
 
-attribute :bucket, :kind_of => String
-attribute :path, :kind_of => String, :name_attribute => true
-attribute :key, :kind_of => String
-attribute :aws_access_key_id, :kind_of => [String, NilClass], :default => nil
-attribute :aws_secret_access_key, :kind_of => [String, NilClass], :default => nil
-attribute :checksum, :kind_of => [String, NilClass], :default => nil
-attribute :region, :kind_of => String, :default => 'us-east-1'
-attribute :timeout, :kind_of => Integer, :default => 900
-attribute :owner, :kind_of => String, :default => 'root'
-attribute :group, :kind_of => String, :default => 'root'
-attribute :mode, :kind_of => [String, Integer, NilClass], :default => nil
+  attribute :bucket, :kind_of => String
+  attribute :path, :kind_of => String, :name_attribute => true
+  attribute :key, :kind_of => String
+  attribute :aws_access_key_id, :kind_of => [String, NilClass], :default => nil
+  attribute :aws_secret_access_key, :kind_of => [String, NilClass], :default => nil
+  attribute :checksum, :kind_of => [String, NilClass], :default => nil
+  attribute :region, :kind_of => String, :default => 'us-east-1'
+  attribute :timeout, :kind_of => Integer, :default => 900
+  attribute :owner, :kind_of => String, :default => 'root'
+  attribute :group, :kind_of => String, :default => 'root'
+  attribute :mode, :kind_of => [String, Integer, NilClass], :default => nil
+
+  action :get
+end

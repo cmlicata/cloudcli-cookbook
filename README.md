@@ -96,14 +96,14 @@ an example of this behavior.
 | :delete | Remove the credentials file    |
 
 #### Attribute Parameters
-| Parameter | Description                                                                     | Default        |
-|-----------|---------------------------------------------------------------------------------|----------------|
-| path      | Location to write the credentials file                                          | name attribute |
-| profile   | The name of the profile for this set of credentials                             | `default`      |
-| params    | Hash of additional configuration key=value pairs to set in the credentials file | nil            |
-| owner     | Credentials file owner                                                          | `root`         |
-| group     | Credentials file group                                                          | `root`         |
-| mode      | Credentials file mode                                                           | 0600           |
+| Parameter           | Description                                                                     | Default        |
+|---------------------|---------------------------------------------------------------------------------|----------------|
+| path                | Location to write the credentials file                                          | name attribute |
+| profile             | The name of the profile for this set of credentials                             | `default`      |
+| credential_params   | Hash of additional configuration key=value pairs to set in the credentials file | {}             |
+| owner               | Credentials file owner                                                          | `root`         |
+| group               | Credentials file group                                                          | `root`         |
+| mode                | Credentials file mode                                                           | 0600           |
 
 #### Usage Examples
 ```ruby
@@ -112,7 +112,7 @@ cloudcli_aws_credentials '/etc/aws/credentials' do
   owner 'testuser'
   group 'testuser'
   mode 0600
-  params(
+  credential_params(
     aws_access_key_id: 'ASDASDASKD123',
     aws_secret_access_key: 'TESTPASS12345',
     region: 'us-west-2'
@@ -127,7 +127,7 @@ cloudcli_aws_credentials '/etc/aws/credentials' do
   group 'testuser'
   profile 'primary'
   mode 0600
-  params(
+  credential_params(
     aws_access_key_id: 'ASDASDASKD123',
     aws_secret_access_key: 'TESTPASS12345',
     region: 'us-west-2'
@@ -141,7 +141,7 @@ cloudcli_aws_credentials '/etc/aws/credentials' do
   group 'root'
   mode 0660
   profile 'secondary'
-  params(
+  credential_params(
     region: 'eu-west-2',
     role_arn: 'arn:aws:iam::123456789012:role/testingchef'
   )
@@ -163,7 +163,7 @@ cloudcli_aws_credentials '/home/testuser/.aws/credentials' do
   owner 'testuser'
   group 'testuser'
   mode 0600
-  params(
+  credential_params(
     aws_access_key_id: 'TEST123',
     aws_secret_access_key: 'SECRETKEY!',
     s3: s3_config

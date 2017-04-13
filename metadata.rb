@@ -11,4 +11,4 @@ issues_url 'https://github.com/cmlicata/cloudcli-cookbook/issues' if respond_to?
 supports 'ubuntu'
 supports 'centos'
 
-depends 'poise-python', '~> 1.2'
+depends 'poise-python', '~> 1.5'

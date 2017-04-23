@@ -18,6 +18,7 @@
 #
 
 actions :get
+
 default_action :get
 
 attribute :bucket, :kind_of => String

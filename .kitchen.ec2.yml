@@ -16,7 +16,7 @@ transport:
 
 provisioner:
   name: chef_zero
-  require_chef_omnibus: latest
+  data_path: test/shared
 
 platforms:
   - name: ubuntu-14.04-ec2
@@ -31,3 +31,21 @@ platforms:
       image_id: <%= ENV['AWS_AMAZON_AMI'] %>
     transport:
       username: ec2-user
+
+suites:
+  - name: default
+    run_list:
+      - recipe[cloudcli::default]
+    attributes:
+      cloudcli:
+        aws:
+          version: 1.9.18
+  - name: profile_test_get
+    run_list:
+      - recipe[test_get::profile]
+      - recipe[node_dump::default]
+    attributes:
+      test_get:
+        bucket: <%= ENV['TEST_BUCKET'] %>
+        key: <%= ENV['TEST_KEY'] %>
+        checksum: <%= ENV['TEST_CHECKSUM'] %>

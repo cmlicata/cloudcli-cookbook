@@ -71,6 +71,8 @@ end
 
 action :delete do
   template new_resource.path do
+    source 'credentials.erb'
+    cookbook 'cloudcli'
     action :delete
   end
 end

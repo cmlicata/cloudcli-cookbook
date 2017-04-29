@@ -29,7 +29,7 @@ def whyrun_supported?
 end
 
 def load_current_resource
-  @current_resource = Chef::Resource::CloudcliAwsS3File.new(new_resource.name)
+  @current_resource = ::Chef::Resource.resource_for_node(:cloudcli_aws_s3_file, node).new(new_resource.name)
   @current_resource.bucket(new_resource.bucket)
   @current_resource.key(new_resource.key)
   @current_resource.path(new_resource.path)

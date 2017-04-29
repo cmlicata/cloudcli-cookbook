@@ -1,6 +1,16 @@
 
+## 1.2.0 2017-04-29
+Fixes for compatibility with Chef >= 13 ([@cmlicata][])
+ * Cleanup unnecessary packages for Linux installations and resources/providers
+ * Add default and profile_test_get suites and pdate centos-6.5 to 6.7
+ * Add fixes to resolve Chef 13 conflicts
+ 
+ [@jeremyfryer]: https://github.com/jeremyfryer
+ [@potato20]: https://github.com/potato20
+ [@alkalin3]: https://github.com/alkalin3
+ 
 ## 1.1.0 2017-03-21
-Fix poise-python depend ([@biinari][])
+Fix poise-python depend ([@cmlicata][])
 
  * Fix issue with specifying multiple version constraints in metadata.rb file
  

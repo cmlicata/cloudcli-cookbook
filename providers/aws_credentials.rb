@@ -54,6 +54,7 @@ action :create do
     variables(
       :state_key => new_resource.path
     )
+    sensitive true
     action :nothing
   end
 

@@ -1,4 +1,8 @@
 
+## 1.3.0 2018-07-05
+
+* Update poise-python to 1.7
+
 ## 1.2.0 2017-04-29
 Fixes for compatibility with Chef >= 13 ([@cmlicata][])
  * Cleanup unnecessary packages for Linux installations and resources/providers

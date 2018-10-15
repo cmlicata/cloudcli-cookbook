@@ -80,6 +80,7 @@ def s3_cmd(command)
   environment['AWS_DEFAULT_REGION'] = new_resource.region
   environment['AWS_ACCESS_KEY_ID'] = new_resource.aws_access_key_id unless new_resource.aws_access_key_id.nil?
   environment['AWS_SECRET_ACCESS_KEY'] = new_resource.aws_secret_access_key unless new_resource.aws_secret_access_key.nil?
+  environment['AWS_PROFILE'] = new_resource.profile unless new_resource.profile.nil?
 
   # Shell out options
   options = { :timeout => new_resource.timeout, :environment => environment }

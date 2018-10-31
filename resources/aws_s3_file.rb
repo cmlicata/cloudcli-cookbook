@@ -32,3 +32,4 @@ attribute :timeout, :kind_of => Integer, :default => 900
 attribute :owner, :kind_of => String, :default => 'root'
 attribute :group, :kind_of => String, :default => 'root'
 attribute :mode, :kind_of => [String, Integer, NilClass], :default => nil
+attribute :profile, :kind_of => String, :default => nil

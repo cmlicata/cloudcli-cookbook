@@ -53,6 +53,7 @@ Resources/Providers
 | key                   | S3 Key name to download                                                                   |                |
 | checksum              | Sha256 checksum to validate download                                                      | nil            |
 | region                | AWS endpoint region                                                                       | us-east-1      |
+| profile               | The AWS profile to use if multiple configurations are defined                             | nil            |
 | timeout               | Number of seconds to wait for download to complete                                        | 900            |
 | owner                 | The owner of the downloaded file                                                          | root           |
 | group                 | The group name the file should be grouped into                                            | root           |

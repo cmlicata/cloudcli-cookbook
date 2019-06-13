@@ -58,6 +58,7 @@ Resources/Providers
 | owner                 | The owner of the downloaded file                                                          | root           |
 | group                 | The group name the file should be grouped into                                            | root           |
 | mode                  | The mode to set on the file. Setting to nil, leaves this to the operating system defaults | nil            |
+| version               | The version of the object key to download.                                                | nil            |
 
 #### Usage Examples
 ```ruby

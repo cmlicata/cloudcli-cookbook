@@ -53,7 +53,7 @@ end
 action :get do
   # We do not want to download the file if we are able to validate the local file if it exists.
   if new_resource.checksum.nil? || new_resource.checksum != current_resource.checksum
-    event = "download s3://#{new_resource.bucket}/#{new_resource.key} and store it at #{new_resource.path}"
+    event = "download s3://#{new_resource.bucket}/#{new_resource.key}#{new_resource.version.nil? ? '' : ' version ' + new_resource.version} and store it at #{new_resource.path}"
     converge_by(event) do
       Chef::Log.info(event)
       new_resource.updated_by_last_action(true) if s3_get
@@ -62,10 +62,16 @@ action :get do
 end
 
 def s3_get
-  cmd = node['cloudcli']['aws']['binary'] +
-        ' s3 cp ' \
-        "s3://#{new_resource.bucket}/#{new_resource.key} " +
-        new_resource.path
+  if new_resource.version
+    cmd = node['cloudcli']['aws']['binary'] +
+          " s3api get-object --bucket #{new_resource.bucket} --key #{new_resource.key} --version-id #{new_resource.version} " +
+          new_resource.path
+  else
+    cmd = node['cloudcli']['aws']['binary'] +
+          " s3 cp s3://#{new_resource.bucket}/#{new_resource.key} " +
+          new_resource.path
+  end
+
   s3_cmd(cmd)
 
   return unless access_controls.requires_changes?
